@@ -1,3 +1,3 @@
-react-leaflet chill map
-man behöver ladda ner map?
-https://www.openstreetmap.org/export#map=5/62.99/17.64 kan man ladda ner map - där kan vi välja bara lund
+backend kvar:
+
+input validation för coordinates vid submit, jämför med tidigare - avstånd
