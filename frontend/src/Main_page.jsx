@@ -5,16 +5,15 @@ import Header from "./components/Header";
 import submit_end from "./api/submit_end";
 
 function Main_page() {
-    const [current_pos, set_current_pos] = useState({
+    const [position, set_position] = useState({
         lat: null,
         long: null,
     });
-
     const [show_error, set_show_error] = useState(false);
     const [show_success, set_show_success] = useState(false);
 
-    async function post_current_poistion() {
-        const res = await submit_end(current_pos);
+    async function post_poistion() {
+        const res = await submit_end(position);
 
         if (res) {
             set_show_success(true);
@@ -30,7 +29,7 @@ function Main_page() {
     useEffect(() => {
         const interval_id = setInterval(() => {
             navigator.geolocation.getCurrentPosition((pos) => {
-                set_current_pos({ lat: pos.coords.latitude, long: pos.coords.longitude });
+                set_position({ lat: pos.coords.latitude, long: pos.coords.longitude });
             });
         }, 500000);
 
@@ -38,8 +37,8 @@ function Main_page() {
     }, []);
 
     useEffect(() => {
-        console.log(current_pos);
-    }, [current_pos]);
+        console.log(position);
+    }, [position]);
 
     return (
         <Layout
@@ -61,10 +60,7 @@ function Main_page() {
                         <></>
                     </div>
 
-                    <button
-                        onClick={() => post_current_poistion()}
-                        className="place-self-end p-4 rounded-full bg-blue-100"
-                    >
+                    <button onClick={() => post_poistion()} className="place-self-end p-4 rounded-full bg-blue-100">
                         Submit location
                     </button>
                 </div>
