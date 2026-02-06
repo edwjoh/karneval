@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
 import submit_end from "./api/submit_end";
+import Map_box from "./components/Map_box";
 
 function Main_page() {
     const [position, set_position] = useState({
@@ -46,18 +47,18 @@ function Main_page() {
             main={
                 <div className="flex flex-col gap-4 p-4 h-full">
                     {show_success && (
-                        <div className="absolute top-20 right-1 bg-green-300 rounded-full p-4">
+                        <div className="absolute top-20 right-1 bg-green-300 rounded-full p-4 z-20">
                             Location successfully submitted
                         </div>
                     )}
                     {show_error && (
-                        <div className="absolute top-20 right-1 bg-red-300 rounded-full p-4 shadow-lg">
+                        <div className="absolute top-20 right-1 bg-red-300 rounded-full p-4 shadow-lg z-20">
                             Location unsuccessfully submitted
                         </div>
                     )}
 
-                    <div className="grow p-2 bg-blue-400 w-full rounded">
-                        <></>
+                    <div className="grow p-2 w-full rounded">
+                        <Map_box />
                     </div>
 
                     <button onClick={() => post_poistion()} className="place-self-end p-4 rounded-full bg-blue-100">
