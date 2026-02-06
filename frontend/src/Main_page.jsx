@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
+
 import Layout from "./components/Layout";
 import Header from "./components/Header";
-import { useEffect, useState } from "react";
+import submit_end from "./api/submit_end";
 
 function Main_page() {
     const [current_pos, set_current_pos] = useState({
@@ -8,17 +10,31 @@ function Main_page() {
         long: null,
     });
 
+    const [show_error, set_show_error] = useState(false);
+    const [show_success, set_show_success] = useState(false);
+
+    async function post_current_poistion() {
+        const res = await submit_end(current_pos);
+
+        if (res) {
+            set_show_success(true);
+
+            setTimeout(() => set_show_success(false), 1000);
+        } else {
+            set_show_error(true);
+
+            setTimeout(() => set_show_error(false), 1000);
+        }
+    }
+
     useEffect(() => {
-        setInterval(() => {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    set_current_pos({ lat: pos.coords.latitude, long: pos.coords.longitude });
-                },
-                (error) => {
-                    console.log(error);
-                },
-            );
-        }, 10000);
+        const interval_id = setInterval(() => {
+            navigator.geolocation.getCurrentPosition((pos) => {
+                set_current_pos({ lat: pos.coords.latitude, long: pos.coords.longitude });
+            });
+        }, 500000);
+
+        return () => clearInterval(interval_id);
     }, []);
 
     useEffect(() => {
@@ -30,12 +46,23 @@ function Main_page() {
             header={<Header />}
             main={
                 <div className="flex flex-col gap-4 p-4 h-full">
+                    {show_success && (
+                        <div className="absolute top-20 right-1 bg-green-300 rounded-full p-4">
+                            Location successfully submitted
+                        </div>
+                    )}
+                    {show_error && (
+                        <div className="absolute top-20 right-1 bg-red-300 rounded-full p-4 shadow-lg">
+                            Location unsuccessfully submitted
+                        </div>
+                    )}
+
                     <div className="grow p-2 bg-blue-400 w-full rounded">
                         <></>
                     </div>
 
                     <button
-                        onClick={() => console.log(current_pos)}
+                        onClick={() => post_current_poistion()}
                         className="place-self-end p-4 rounded-full bg-blue-100"
                     >
                         Submit location

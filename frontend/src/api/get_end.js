@@ -1,6 +1,8 @@
+import { base_url } from "./base_url";
+
 async function get_end() {
     try {
-        const res = await fetch("", {
+        const res = await fetch(`${base_url}/api/get_end`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
