@@ -1,5 +1,5 @@
 import "leaflet/dist/leaflet.css";
-import { MapContainer, CircleMarker, TileLayer, useMap, Marker } from "react-leaflet";
+import { MapContainer, CircleMarker, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 import { useEffect, useRef } from "react";
 import Pin_icon from "../icons/Pin_icon";
 
@@ -35,10 +35,12 @@ export default function Map_box({ position }) {
 			<Map_component position={position} />
 			{/* <CircleMarker
 				center={[position.lat, position.long]}
-				radius={12}
-				fillColor="#90D5FF"
+				radius={14}
+				fillColor="#315ff3"
 				opacity={1}
-				color="#1E90FF"
+				fillOpacity={1}
+				color="#fff"
+				weight={4}
 			/> */}
 
 			<Marker
@@ -46,7 +48,9 @@ export default function Map_box({ position }) {
 				eventHandlers={{
 					click: onclick,
 				}}
-			/>
+			>
+				<Popup>Här slutar kön!</Popup>
+			</Marker>
 		</MapContainer>
 	);
 }
