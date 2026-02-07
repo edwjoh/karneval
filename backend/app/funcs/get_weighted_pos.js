@@ -19,8 +19,6 @@ function get_weighted_pos(coords) {
 		weighted_long += coord.long * weight;
 		total_weight += weight;
 	});
-	console.log("asd");
-	console.log(weighted_lat, weighted_long, total_weight);
 
 	return {
 		lat: weighted_lat / total_weight,

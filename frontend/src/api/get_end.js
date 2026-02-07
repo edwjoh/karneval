@@ -9,8 +9,6 @@ async function get_end() {
 			},
 		});
 
-		console.log(res);
-
 		if (!res.ok) throw "knas";
 
 		return res.json();

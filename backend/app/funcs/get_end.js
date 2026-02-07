@@ -20,11 +20,8 @@ export function get_final_pos() {
 	try {
 		const coords = get_coords();
 
-		console.log(coords);
-
 		const final_pos = get_weighted_pos(coords);
 
-		console.log(final_pos);
 		return final_pos;
 	} catch (error) {
 		return null;

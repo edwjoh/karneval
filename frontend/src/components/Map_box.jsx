@@ -89,7 +89,7 @@ export default function Map_box({ user_position, end_position, on_request_locati
 
 			<button
 				onClick={handle_location_click}
-				className="absolute top-4 right-4 z-[1000] bg-white shadow-lg rounded-lg p-3"
+				className="absolute top-4 right-4 z-1000 bg-white shadow-lg rounded-lg p-3"
 			>
 				<Location_icon size="28" />
 			</button>
