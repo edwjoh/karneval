@@ -1,6 +1,6 @@
 function Header() {
 	return (
-		<div className="flex justify-between p-2">
+		<div className="flex items-center min-h-18 p-4 text-accent">
 			<a href="/" className="text-3xl">
 				Karnevalkön.se
 			</a>
