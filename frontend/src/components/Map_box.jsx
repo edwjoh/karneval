@@ -19,7 +19,7 @@ export default function Map_box({ user_position, end_position }) {
 	const size = 64;
 
 	const customIcon = L.icon({
-		iconUrl: "/green-black.png",
+		iconUrl: "/blue.png",
 		iconSize: [size, size],
 		iconAnchor: [size / 2, size],
 		popupAnchor: [0, -size],

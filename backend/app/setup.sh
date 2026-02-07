@@ -17,6 +17,6 @@ sqlite3 $PWD/db.db "
 
     INSERT INTO stats(id, gets, posts) VALUES(1, 0, 0);
 
-
+    INSERT INTO coords(id, lat, long, date) VALUES('b0973baf-aaa1-4beb-a15b-7f47fbc64121', 55.705350037621415, 13.195498537795453, 1770487587732)
  
 "
