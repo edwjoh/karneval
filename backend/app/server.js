@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(cors());
-app.set("trust proxy", true);
+app.set("trust proxy", 1);
 
 app.use("/api", router);
 
@@ -22,5 +22,4 @@ app.get("/{*path}", (req, res) => {
 	res.sendFile(path.join(dist_path, "index.html"));
 });
 
-const PORT = 3029;
-app.listen(PORT, () => console.log(`App is running on port ${PORT}`));
+app.listen(3029, () => console.log(`kööörrr`));
