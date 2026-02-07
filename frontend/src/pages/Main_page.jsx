@@ -7,12 +7,23 @@ import Check_icon from "../icons/Check_icon";
 import X_icon from "../icons/X_icon";
 
 function Main_page() {
+    const [submit_content, set_submit_content] = useState("Dela position");
+
     const [position, set_position] = useState({
         lat: 55.7029,
         long: 13.1947,
     });
 
-    const [submit_content, set_submit_content] = useState("Dela position");
+    const [end_position, set_end_position] = useState({
+        lat: 55.7029,
+        long: 13.1947,
+    });
+
+    async function get_end_position() {
+        const data = await get_end();
+
+        return data;
+    }
 
     async function post_position() {
         set_submit_content(<Loader />);
@@ -37,6 +48,15 @@ function Main_page() {
         const interval_id = setInterval(() => {
             position_setter();
         }, 5000);
+
+        return () => clearInterval(interval_id);
+    }, []);
+
+    useEffect(() => {
+        set_end_position(get_end_position());
+        const interval_id = setInterval(() => {
+            set_end_position(get_end_position());
+        }, 120000);
 
         return () => clearInterval(interval_id);
     }, []);
