@@ -1,0 +1,13 @@
+@theme {
+	--color-background: #1a1a1a;
+	--color-primary: #4a7c9e;
+	--color-secondary: #123123;
+	--color-text-primary: #ffffff;
+	--color-text-secondary: #a0a0a0;
+	--color-accent: #e8e8e8;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("/inter.ttf");
+}
