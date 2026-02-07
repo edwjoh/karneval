@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(cors());
+app.set("trust proxy", true);
 
 app.use("/api", app_limiter, router);
 
