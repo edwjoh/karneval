@@ -15,7 +15,7 @@ export function insert_coords(lat, long) {
 
 export function get_coords() {
 	try {
-		const q = db.prepare("SELECT * FROM coords ORDER BY date DESC LIMIT 4");
+		const q = db.prepare("SELECT * FROM coords ORDER BY date DESC LIMIT 10");
 
 		const coords = q.all();
 
