@@ -1,1 +1,1 @@
-export const base_url = "http://localhost:3029";
+export const base_url = "https://www.slutetavkön.se";
