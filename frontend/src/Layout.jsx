@@ -3,7 +3,7 @@ import Router from "./Router";
 
 function Layout() {
 	return (
-		<div className="h-screen w-screen max-w-125 mx-auto flex flex-col">
+		<div className="h-svh bg-background w-screen max-w-125 mx-auto flex flex-col">
 			<Header />
 			<div className="grow">
 				<Router />
