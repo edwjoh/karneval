@@ -8,9 +8,10 @@ import Check_icon from "../icons/Check_icon";
 import X_icon from "../icons/X_icon";
 
 function Main_page() {
-    const default_text = "Dela position";
+    const default_text = "Är du i slutet av kön? Dela din position";
 
     const [submit_content, set_submit_content] = useState(default_text);
+    const [is_loading_end_position, set_is_loading_end_position] = useState(false);
 
     const [user_position, set_user_position] = useState({
         lat: 55.7029,
@@ -28,10 +29,11 @@ function Main_page() {
         if (!data) return;
 
         set_end_position(data);
+        set_is_loading_end_position(false);
     }
 
     async function post_position() {
-        set_submit_content(<Loader />);
+        set_submit_content(<Loader color="black" size="24px" />);
 
         const res = await submit_end(user_position);
 
@@ -69,7 +71,9 @@ function Main_page() {
 
     return (
         <div className="flex flex-col gap-4 p-4 h-full">
-            <div className="w-full h-full rounded">
+            <div className="w-full h-full rounded relative">
+                {is_loading_end_position && <Loader_display />}
+
                 <Map_box user_position={user_position} end_position={end_position} />
             </div>
 
@@ -85,3 +89,16 @@ function Main_page() {
 }
 
 export default Main_page;
+
+function Loader_display() {
+    return (
+        <div
+            onClick={(e) => {
+                e.stopPropagation();
+            }}
+            className="bg-black/50 w-full h-full flex justify-center items-center z-20 absolute top-0 left-0"
+        >
+            <Loader color="white" size="48px" />
+        </div>
+    );
+}

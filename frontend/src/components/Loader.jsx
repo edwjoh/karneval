@@ -1,5 +1,10 @@
-function Loader() {
-    return <div className="h-6 w-6 animate-spin rounded-full border-2 border-black border-t-transparent" />;
+function Loader({ color, size }) {
+    return (
+        <div
+            style={{ height: size, width: size }}
+            className={`animate-spin rounded-full border-2 border-${color} border-t-transparent`}
+        />
+    );
 }
 
 export default Loader;
