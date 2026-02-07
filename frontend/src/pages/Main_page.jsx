@@ -8,7 +8,7 @@ import X_icon from "../icons/X_icon";
 import coords_distance from "../misc/distance";
 
 const DEFAULT_POSITION = { lat: 55.7029, long: 13.1947 };
-const MAX_DISTANCE = 250;
+const MAX_DISTANCE = 500;
 
 function Main_page() {
 	const default_text = "Längst bak i kön? Dela och hjälp andra";
@@ -46,18 +46,23 @@ function Main_page() {
 		}, 1000);
 	}
 
-	function request_user_position() {
+	function request_user_position(on_success) {
 		navigator.geolocation.getCurrentPosition(
 			(pos) => {
-				set_user_position({
+				const new_position = {
 					lat: pos.coords.latitude,
 					long: pos.coords.longitude,
-				});
+				};
+				set_user_position(new_position);
 				set_has_location_permission(true);
+				if (on_success) {
+					on_success(new_position);
+				}
 			},
 			(error) => {
 				console.error("Location error:", error);
 				set_has_location_permission(false);
+				return null;
 			},
 		);
 	}

@@ -26,11 +26,18 @@ export default function Map_box({ user_position, end_position, on_request_locati
 		map_ref.current.panTo([position.lat, position.long]);
 	}
 
-	function handle_location_click() {
+	function handle_location_click(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
 		if (user_position) {
 			pan_to_position(user_position);
 		} else {
-			on_request_location();
+			on_request_location((new_position) => {
+				setTimeout(() => {
+					pan_to_position(new_position);
+				}, 100);
+			});
 		}
 	}
 
