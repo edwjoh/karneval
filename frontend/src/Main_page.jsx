@@ -7,8 +7,8 @@ import Map_box from "./components/Map_box";
 
 function Main_page() {
     const [position, set_position] = useState({
-        lat: null,
-        long: null,
+        lat: 55.7029,
+        long: 13.1947,
     });
     const [show_error, set_show_error] = useState(false);
     const [show_success, set_show_success] = useState(false);
@@ -27,12 +27,17 @@ function Main_page() {
         }
     }
 
+    function position_setter() {
+        navigator.geolocation.getCurrentPosition((pos) => {
+            set_position({ lat: pos.coords.latitude, long: pos.coords.longitude });
+        });
+    }
+
     useEffect(() => {
+        position_setter();
         const interval_id = setInterval(() => {
-            navigator.geolocation.getCurrentPosition((pos) => {
-                set_position({ lat: pos.coords.latitude, long: pos.coords.longitude });
-            });
-        }, 500000);
+            position_setter();
+        }, 5000);
 
         return () => clearInterval(interval_id);
     }, []);
@@ -58,7 +63,7 @@ function Main_page() {
                     )}
 
                     <div className="grow p-2 w-full rounded">
-                        <Map_box />
+                        <Map_box position={position} />
                     </div>
 
                     <button onClick={() => post_poistion()} className="place-self-end p-4 rounded-full bg-blue-100">
