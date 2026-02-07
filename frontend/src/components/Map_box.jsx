@@ -11,11 +11,19 @@ const LUND_BOUNDS = [
 	[55.75, 13.25],
 ];
 
+const AF_POSITION = [55.7029, 13.1947];
+
 export default function Map_box({ user_position, end_position, on_request_location }) {
 	const map_ref = useRef(null);
 
-	const custom_icon = L.icon({
+	const end_icon = L.icon({
 		iconUrl: "/blue.png",
+		iconSize: [ICON_SIZE, ICON_SIZE],
+		iconAnchor: [ICON_SIZE / 2, ICON_SIZE],
+		popupAnchor: [0, -ICON_SIZE],
+	});
+	const af_icon = L.icon({
+		iconUrl: "/af.png",
 		iconSize: [ICON_SIZE, ICON_SIZE],
 		iconAnchor: [ICON_SIZE / 2, ICON_SIZE],
 		popupAnchor: [0, -ICON_SIZE],
@@ -40,6 +48,14 @@ export default function Map_box({ user_position, end_position, on_request_locati
 			});
 		}
 	}
+
+	useEffect(() => {
+		if (map_ref.current) {
+			setTimeout(() => {
+				map_ref.current.invalidateSize();
+			}, 100);
+		}
+	}, []);
 
 	useEffect(() => {
 		pan_to_position(end_position);
@@ -80,9 +96,10 @@ export default function Map_box({ user_position, end_position, on_request_locati
 						weight={4}
 					/>
 				)}
+				<Marker icon={af_icon} position={AF_POSITION} />
 
 				<Marker
-					icon={custom_icon}
+					icon={end_icon}
 					position={[end_position.lat, end_position.long]}
 					eventHandlers={{
 						popupopen: () => {

@@ -3,7 +3,6 @@ import router from "./router.js";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import { app_limiter } from "./rate_limits.js";
 
 const app = express();
 
@@ -14,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 app.set("trust proxy", true);
 
-app.use("/api", app_limiter, router);
+app.use("/api", router);
 
 const dist_path = path.join(__dirname, "../../frontend/dist");
 app.use(express.static(dist_path));

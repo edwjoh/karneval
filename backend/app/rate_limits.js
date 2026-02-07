@@ -1,8 +1,8 @@
 import { rateLimit } from "express-rate-limit";
 
-export const app_limiter = rateLimit({
+export const get_limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minuter
-	limit: 100,
+	limit: 2,
 	standardHeaders: true,
 	legacyHeaders: false,
 	ipv6Subnet: 56,
@@ -10,7 +10,7 @@ export const app_limiter = rateLimit({
 
 export const submit_limiter = rateLimit({
 	windowMs: 10 * 60 * 1000, // 10 minuter
-	limit: 10,
+	limit: 5,
 	standardHeaders: true,
 	legacyHeaders: false,
 	ipv6Subnet: 56,
