@@ -9,7 +9,7 @@ import X_icon from "../icons/X_icon";
 import coords_distance from "../misc/distance";
 
 function Main_page() {
-    const default_text = "Är du i slutet av kön? Hjälp andra och dela din position";
+    const default_text = "Längst bak i kön? Dela och hjälp andra";
 
     const [submit_content, set_submit_content] = useState(default_text);
     const [is_loading_end_position, set_is_loading_end_position] = useState(false);
