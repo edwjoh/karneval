@@ -5,6 +5,10 @@ export function get_end(req, res) {
 	try {
 		const final_pos = get_final_pos();
 
+		if (!final_pos) {
+			return res.status(404).send("No queue data available");
+		}
+
 		return res.status(200).send(final_pos);
 	} catch (error) {
 		console.log(error);
@@ -15,7 +19,12 @@ export function get_end(req, res) {
 export function get_final_pos() {
 	try {
 		const coords = get_coords();
+
+		console.log(coords);
+
 		const final_pos = get_weighted_pos(coords);
+
+		console.log(final_pos);
 		return final_pos;
 	} catch (error) {
 		return null;

@@ -10,7 +10,7 @@ export const app_limiter = rateLimit({
 
 export const submit_limiter = rateLimit({
 	windowMs: 10 * 60 * 1000, // 10 minuter
-	limit: 1,
+	limit: 3,
 	standardHeaders: true,
 	legacyHeaders: false,
 	ipv6Subnet: 56,
