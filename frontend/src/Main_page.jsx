@@ -62,11 +62,11 @@ function Main_page() {
                         </div>
                     )}
 
-                    <div className="grow p-2 w-full rounded">
+                    <div className="grow p-2 w-full">
                         <Map_box position={position} />
                     </div>
 
-                    <button onClick={() => post_poistion()} className="p-4 rounded-full w-full bg-blue-100">
+                    <button onClick={() => post_poistion()} className="p-4 rounded-full w-full bg-red-400">
                         Submit location
                     </button>
                 </div>
