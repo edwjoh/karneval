@@ -9,6 +9,14 @@ sqlite3 $PWD/db.db "
         date INTEGER NOT NULL
     );
 
+    CREATE TABLE stats (
+        id INTEGER,
+        gets INTEGER,
+        posts INTEGER
+    );
+
+    INSERT INTO stats(id, gets, posts) VALUES(1, 0, 0);
+
     INSERT INTO coords(id, lat, long, date) VALUES('273c2010-6dcd-4c70-8700-4132857b89e3', '55.72248', '13.21280', 2);
     INSERT INTO coords(id, lat, long, date) VALUES('3d79cd91-0895-478a-b88d-074621889415', '55.69507', '13.17703', 1);
     INSERT INTO coords(id, lat, long, date) VALUES('881644b7-5f5f-4e8f-a503-f2823e16e9d9', '55.69726', '13.18571', 4);
