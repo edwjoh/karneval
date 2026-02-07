@@ -89,7 +89,7 @@ function Main_page() {
             <button
                 disabled={!is_in_range() || submit_content != default_text}
                 onClick={() => post_position()}
-                className="p-4 rounded w-full bg-green-300 flex items-center justify-center disabled:opacity-30"
+                className="p-4 w-full bg-green-300 flex items-center justify-center disabled:opacity-30 shadow rounded-lg h-24"
             >
                 {submit_content}
             </button>
