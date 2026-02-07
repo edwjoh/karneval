@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import submit_end from "../api/submit_end";
+import get_end from "../api/get_end";
 import Map_box from "../components/Map_box";
 import Loader from "../components/Loader";
 import Check_icon from "../icons/Check_icon";
@@ -9,7 +10,7 @@ import X_icon from "../icons/X_icon";
 function Main_page() {
     const [submit_content, set_submit_content] = useState("Dela position");
 
-    const [position, set_position] = useState({
+    const [user_position, set_user_position] = useState({
         lat: 55.7029,
         long: 13.1947,
     });
@@ -19,15 +20,17 @@ function Main_page() {
         long: 13.1947,
     });
 
-    async function get_end_position() {
+    async function load_end_position() {
         const data = await get_end();
 
-        return data;
+        if (data) {
+            set_end_position(data);
+        }
     }
 
     async function post_position() {
         set_submit_content(<Loader />);
-        const res = await submit_end(position);
+        const res = await submit_end(user_position);
 
         const message = res ? <Check_icon /> : <X_icon />;
 
@@ -39,7 +42,7 @@ function Main_page() {
 
     function position_setter() {
         navigator.geolocation.getCurrentPosition((pos) => {
-            set_position({ lat: pos.coords.latitude, long: pos.coords.longitude });
+            set_user_position({ lat: pos.coords.latitude, long: pos.coords.longitude });
         });
     }
 
@@ -53,22 +56,22 @@ function Main_page() {
     }, []);
 
     useEffect(() => {
-        set_end_position(get_end_position());
+        load_end_position();
         const interval_id = setInterval(() => {
-            set_end_position(get_end_position());
+            load_end_position();
         }, 120000);
 
         return () => clearInterval(interval_id);
     }, []);
 
     useEffect(() => {
-        console.log(position);
-    }, [position]);
+        console.log(user_position);
+    }, [user_position]);
 
     return (
         <div className="flex flex-col gap-4 p-4 h-full">
             <div className="w-full h-full rounded">
-                <Map_box position={position} />
+                <Map_box user_position={user_position} end_position={end_position} />
             </div>
 
             <button
