@@ -8,7 +8,9 @@ import Check_icon from "../icons/Check_icon";
 import X_icon from "../icons/X_icon";
 
 function Main_page() {
-    const [submit_content, set_submit_content] = useState("Dela position");
+    const default_text = "Dela position";
+
+    const [submit_content, set_submit_content] = useState(default_text);
 
     const [user_position, set_user_position] = useState({
         lat: 55.7029,
@@ -23,20 +25,21 @@ function Main_page() {
     async function load_end_position() {
         const data = await get_end();
 
-        if (data) {
-            set_end_position(data);
-        }
+        if (!data) return;
+
+        set_end_position(data);
     }
 
     async function post_position() {
         set_submit_content(<Loader />);
+
         const res = await submit_end(user_position);
 
         const message = res ? <Check_icon /> : <X_icon />;
 
         setTimeout(() => {
             set_submit_content(message);
-            setTimeout(() => set_submit_content("Dela position"), 2000);
+            setTimeout(() => set_submit_content(default_text), 2000);
         }, 1000);
     }
 
@@ -64,10 +67,6 @@ function Main_page() {
         return () => clearInterval(interval_id);
     }, []);
 
-    useEffect(() => {
-        console.log(user_position);
-    }, [user_position]);
-
     return (
         <div className="flex flex-col gap-4 p-4 h-full">
             <div className="w-full h-full rounded">
@@ -75,6 +74,7 @@ function Main_page() {
             </div>
 
             <button
+                disabled={submit_content != default_text}
                 onClick={() => post_position()}
                 className="p-4 rounded w-full bg-red-400 flex items-center justify-center"
             >
