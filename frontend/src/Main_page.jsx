@@ -66,7 +66,7 @@ function Main_page() {
                         <Map_box position={position} />
                     </div>
 
-                    <button onClick={() => post_poistion()} className="place-self-end p-4 rounded-full bg-blue-100">
+                    <button onClick={() => post_poistion()} className="p-4 rounded-full w-full bg-blue-100">
                         Submit location
                     </button>
                 </div>

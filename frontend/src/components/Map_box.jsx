@@ -14,8 +14,8 @@ export default function Map_box({ position }) {
             style={{ height: "100%", width: "100%", zIndex: 2 }}
         >
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url={`https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=${"y79r0d3305U62Jkfz2tGHQq2Qmuea0rxf2YIBeeJbTjqvQ2yuyxHZJi0fMANL8MZ"}`}
+                attribution='&copy; <a href="http://jawg.io">Jawg</a>'
             />
             <Map_component position={position} />
         </MapContainer>
