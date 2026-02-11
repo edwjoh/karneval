@@ -1,6 +1,6 @@
 # Slutetpåkön.se
 
-En hemsida för att se slutet på den kilometerlånga kön till lundakarnevalsuppropet baserat på crowdsourcad data.
+En hemsida för att se slutet på den kilometerlånga kön till lundakarnevalsuppropet baserat på crowdsourcad data som användes av hundratals studenter under köns dygn!
 
 <img src="assets/3.png" style="width: 30%;">
 
