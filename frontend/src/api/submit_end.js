@@ -1,4 +1,4 @@
-import { base_url } from "./base_url";
+import { base_url } from "../misc/base_url";
 
 async function submit_end(pos) {
     try {
