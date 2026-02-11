@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default function data_middleware(req, res, next) {
-	const ip = req.ip;
+	const ip = req.headers["x-real-ip"];
 	const method = req.method;
 	const entry = `${ip} ${method}\n`;
 	const file_path = path.join(__dirname, "data.txt");

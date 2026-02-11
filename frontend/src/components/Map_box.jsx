@@ -11,7 +11,7 @@ const LUND_BOUNDS = [
     [55.75, 13.25],
 ];
 
-const AF_POSITION = [55.7029, 13.1947];
+const AF_POSITION = [55.70532887958768, 13.195643377115754];
 
 export default function Map_box({ user_position, end_position, on_request_location }) {
     const map_ref = useRef(null);
