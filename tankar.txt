@@ -1,3 +1,0 @@
-backend kvar:
-
-input validation för coordinates vid submit, jämför med tidigare - avstånd
